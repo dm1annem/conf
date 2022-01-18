@@ -39,12 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djoser'
+    'djoser',
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
 
-    'apps.authentication.apps.AuthenticationConfig'
+    'apps.authentication.apps.AuthenticationConfig',
+    'apps.users.apps.UsersConfig'
 ]
 
 MIDDLEWARE = [
@@ -147,10 +148,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
     'DEFAULT_PERMISSION_CLASSES': [
         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly',
-        'rest_framework_simplejwt.authentication.JWTAuthentication'
+        # 'rest_framework_simplejwt.authentication.JWTAuthentication'
     ]
+}
+
+DJOSER = {
+    # 'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    # 'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': False,
+    # 'SERIALIZERS': {},
 }
 
 SIMPLE_JWT = {
