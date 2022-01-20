@@ -13,7 +13,7 @@ from datetime import timedelta
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-from qwerty import secret_key
+from qwerty import secret_key, root
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -91,7 +91,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'karkascentr',
         'USER': 'root',
-        'PASSWORD': 'dadada333',
+        'PASSWORD': root,
         'HOST': 'localhost',
         'PORT': '3306',
     }
